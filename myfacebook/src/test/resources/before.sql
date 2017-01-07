@@ -1,0 +1,1 @@
+insert into role values('ROLE_USER')
