@@ -9,7 +9,6 @@
 	<packaging>war</packaging>
 
 	<name>myfacebook</name>
-	<description>My Facebook</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -89,4 +88,5 @@
 	</build>
 
 
+	<description>Demo Spring boot with JSP</description>
 </project>
