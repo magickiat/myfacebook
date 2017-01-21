@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<%@include file="nav.jsp" %>
+	<%@include file="nav.jsp"%>
 
 
 	<div class="container">
@@ -68,7 +68,6 @@
 		</div>
 	</div>
 
-	<footer class="text-center" style="padding-top: 50px;">
-		MagicalCyber &copy; 2016 </footer>
+	<%@include file="footer.jsp"%>
 </body>
 </html>

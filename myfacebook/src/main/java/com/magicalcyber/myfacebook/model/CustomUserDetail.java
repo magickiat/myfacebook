@@ -8,6 +8,7 @@ public class CustomUserDetail extends org.springframework.security.core.userdeta
 
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String fullname;
 
 	public CustomUserDetail(String username, String password, boolean enabled, boolean accountNonExpired,
@@ -16,10 +17,11 @@ public class CustomUserDetail extends org.springframework.security.core.userdeta
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	}
 
-	public CustomUserDetail(String username, String password, Collection<? extends GrantedAuthority> authorities,
-			String fullname) {
+	public CustomUserDetail(Long userId, String username, String password,
+			Collection<? extends GrantedAuthority> authorities, String fullname) {
 		super(username, password, authorities);
 		this.fullname = fullname;
+		this.id = userId;
 	}
 
 	public String getFullname() {
@@ -28,6 +30,14 @@ public class CustomUserDetail extends org.springframework.security.core.userdeta
 
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }
