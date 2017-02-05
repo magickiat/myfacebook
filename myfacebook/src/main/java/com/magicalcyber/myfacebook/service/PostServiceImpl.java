@@ -1,6 +1,7 @@
 package com.magicalcyber.myfacebook.service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -36,7 +37,17 @@ public class PostServiceImpl implements PostService {
 
 	@Override
 	public List<Post> listPost(Long userId) {
-		return postRepository.findByCreatedUserOrderByCreatedDateDesc(userRepository.getOne(userId));
+
+		// get current user
+		User currentUser = userRepository.findOne(userId);
+
+		HashSet<User> users = new HashSet<>();
+		if (currentUser.getFriends() != null && !currentUser.getFriends().isEmpty()) {
+			users = new HashSet<>(currentUser.getFriends());
+		}
+		users.add(currentUser);
+
+		return postRepository.findByCreatedUserInOrderByCreatedDateDesc(users);
 	}
 
 	@Override
@@ -46,7 +57,7 @@ public class PostServiceImpl implements PostService {
 			throw new IllegalArgumentException("Not found this post");
 		} else {
 			if (post.getComments() == null) {
-				post.setComments(new HashSet<>());
+				post.setComments(new ArrayList<>());
 			}
 
 			User commentUser = userRepository.findOne(commentForm.getUserId());

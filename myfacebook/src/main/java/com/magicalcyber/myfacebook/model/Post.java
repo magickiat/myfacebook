@@ -1,7 +1,7 @@
 package com.magicalcyber.myfacebook.model;
 
 import java.sql.Timestamp;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,13 +26,13 @@ public class Post {
 
 	@Column
 	private Timestamp createdDate;
-	
+
 	@ManyToOne
 	private User createdUser;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@OrderBy("createdDate")
-	private Set<Comment> comments;
+	private List<Comment> comments;
 
 	public Long getId() {
 		return id;
@@ -58,14 +58,6 @@ public class Post {
 		this.createdDate = createdDate;
 	}
 
-	public Set<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
-	}
-
 	public User getCreatedUser() {
 		return createdUser;
 	}
@@ -74,5 +66,12 @@ public class Post {
 		this.createdUser = createdUser;
 	}
 
-	
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 }

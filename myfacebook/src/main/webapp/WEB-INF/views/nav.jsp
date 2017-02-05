@@ -22,9 +22,10 @@
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
 					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">My Facebook</a>
 			</div>
@@ -44,6 +45,13 @@
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 						<li>
+							<a href='<c:url value="/friend" />'> <span
+									class="glyphicon glyphicon glyphicon-user" aria-hidden="true">
+									<c:if test="${ not empty friendsWaitForApprove }">${ friendsWaitForApprove.size() }</c:if>
+								</span>
+							</a>
+						</li>
+						<li>
 							<a href="#"> <sec:authorize access="isAuthenticated()">
 									<sec:authentication var="user" property="principal" />
 									<c:out value="${ user.fullname }"></c:out>
@@ -51,6 +59,7 @@
 								</sec:authorize>
 							</a>
 						</li>
+
 						<li>
 
 							<form:form cssClass="navbar-form" servletRelativeAction="/logout"

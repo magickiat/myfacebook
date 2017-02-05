@@ -1,12 +1,16 @@
 package com.magicalcyber.myfacebook.model;
 
 import java.sql.Timestamp;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -35,6 +39,10 @@ public class User {
 
 	@OneToOne
 	private Role role;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@OrderBy("createdDate")
+	private Set<User> friends;
 
 	public Role getRole() {
 		return role;
@@ -84,5 +92,12 @@ public class User {
 		this.name = name;
 	}
 
-	
+	public Set<User> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(Set<User> friends) {
+		this.friends = friends;
+	}
+
 }
